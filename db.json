@@ -49,7 +49,8 @@
       "phone": "+237 656585542",
       "email": "davis@gmail.com",
       "address": "Dschang, Cameroun",
-      "notes": ""
+      "notes": "",
+      "profession": "pediatrie"
     },
     {
       "id": 2,
@@ -58,7 +59,8 @@
       "phone": "+237 674772917",
       "email": "laura@gmail.com",
       "address": "Douala, Cameroun",
-      "notes": ""
+      "notes": "",
+      "profession": "medecin"
     },
     {
       "id": 3,
@@ -67,7 +69,38 @@
       "phone": "+237 677345741",
       "email": "john@gmail.com",
       "address": "Yaounde, Cameroun",
-      "notes": ""
+      "notes": "",
+      "profession": "churigie"
+    },
+    {
+      "id": 4,
+      "name": "Laura Thompson",
+      "qualification": "Dr",
+      "phone": "+237 674772917",
+      "email": "laura@gmail.com",
+      "address": "Douala, Cameroun",
+      "notes": "",
+      "profession": "medecin"
+    },
+    {
+      "id": 5,
+      "name": "Laura Thompson",
+      "qualification": "Dr",
+      "phone": "+237 674772917",
+      "email": "laura@gmail.com",
+      "address": "Douala, Cameroun",
+      "notes": "",
+      "profession": "medecin"
+    },
+    {
+      "id": 6,
+      "name": "Laura Thompson",
+      "qualification": "Dr",
+      "phone": "+237 674772917",
+      "email": "laura@gmail.com",
+      "address": "Douala, Cameroun",
+      "notes": "",
+      "profession": "medecin"
     }
   ],
   "prescriptions": [
