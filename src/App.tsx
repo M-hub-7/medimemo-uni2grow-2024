@@ -9,6 +9,7 @@ import Login from "./pages/login/Login";
 import { Medications } from "./pages/medications/Medications.tsx";
 import { Therapies } from "./pages/therapies/Therapies.tsx";
 import { AddEditContact } from "./pages/contacts/actions/AddEditContact.tsx";
+import { ViewContact } from "./pages/viewContact/ViewContact.tsx";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +35,10 @@ const router = createBrowserRouter([
       {
         path: "/addEditContact",
         element: <AddEditContact />,
+      },
+      {
+        path: "/viewcontact",
+        element: <ViewContact />,
       },
       {
         path: "/Therapies",
