@@ -1,4 +1,3 @@
-
 .typography {
   color: var(--Primary-text, #444);
   text-align: center;
@@ -34,11 +33,18 @@
 }
 
 .addContainer {
+  background-color: white;
   display: flex;
-  margin-top: 25px;
-  justify-content: flex-end;
-  margin-bottom: 15px;
-  flex-shrink: 0;
+  width: 50px;
+  height: 50px;
+  justify-content: center;
+  align-items: center;
+  border-radius: 25px;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  margin: 36px;
+  cursor: pointer;
 }
 
 .contactName {
