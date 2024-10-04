@@ -133,9 +133,16 @@ export function AddEditContact() {
     <>
       <div className="contenair">
         <div className="headerContainer">
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="arrowBack">
+          <Button
+            type="button"
+            sx={{ p: "10px" }}
+            aria-label="arrowBack"
+            onClick={() => {
+              navigate("/contacts");
+            }}
+          >
             <ArrowBackIcon />
-          </IconButton>
+          </Button>
           <Typography className="textTypography" paddingLeft={15}>
             New doctor
           </Typography>
