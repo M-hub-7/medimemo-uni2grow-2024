@@ -142,158 +142,160 @@ export function AddEditContact() {
         </div>
         <div className="formContainer">
           <form onSubmit={handleSubmit} className="formcolor">
-            <div className="textfieldContenair">
-              <TextField
-                id="outlined-basic"
-                onChange={handleChange}
-                label={labelEnable.name ? "Name" : ""}
-                onFocus={() => handleOnFocus("name")}
-                variant="outlined"
-                placeholder="name"
-                color="error"
-                name="name"
-                value={contact.name}
-                sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
-                slotProps={{
-                  input: {
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <img src={stethoscope} alt="stethoscope" />
-                        <Typography
-                          sx={{
-                            fontSize: 14,
-                            fontWeight: 400,
-                            fontStyle: "normal",
-                            color: "#444",
-                          }}
-                          paddingLeft={2}
-                        >
-                          Dr.{" "}
-                        </Typography>
-                      </InputAdornment>
-                    ),
-                  },
-                }}
-                error={!!errors.name}
-                helperText={errors.name}
-              />
-              <TextField
-                id="outlined-basic"
-                variant="outlined"
-                color="error"
-                placeholder="specialty"
-                onChange={handleChange}
-                label={labelEnable.profession ? "Specialty" : ""}
-                onFocus={() => handleOnFocus("profession")}
-                name="profession"
-                value={contact.profession}
-                sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
-                slotProps={{
-                  input: {
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <img src={speciality} alt="speciality" />
-                      </InputAdornment>
-                    ),
-                  },
-                }}
-                error={!!errors.profession}
-                helperText={errors.profession}
-              />
-              <TextField
-                id="outlined-basic"
-                label={labelEnable.phone ? "Phone number" : ""}
-                onFocus={() => handleOnFocus("phone")}
-                variant="outlined"
-                color="error"
-                sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
-                name="phone"
-                placeholder="Phone number"
-                value={contact.phone}
-                onChange={handleChange}
-                slotProps={{
-                  input: {
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <img src={phone} alt="location" />
-                      </InputAdornment>
-                    ),
-                  },
-                }}
-                error={!!errors.phone}
-                helperText={errors.phone}
-              />
-              <TextField
-                id="outlined-basic"
-                label={labelEnable.email ? "E-mail" : ""}
-                onFocus={() => handleOnFocus("email")}
-                variant="outlined"
-                color="error"
-                sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
-                name="email"
-                placeholder="E-mail"
-                value={contact.email}
-                onChange={handleChange}
-                slotProps={{
-                  input: {
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <img src={email} alt="location" />
-                      </InputAdornment>
-                    ),
-                  },
-                }}
-                error={!!errors.email}
-                helperText={errors.email}
-              />
+            <div className="infofield">
+              <div className="textfieldContenair">
+                <TextField
+                  id="outlined-basic"
+                  onChange={handleChange}
+                  label={labelEnable.name ? "Name" : ""}
+                  onFocus={() => handleOnFocus("name")}
+                  variant="outlined"
+                  placeholder="name"
+                  color="error"
+                  name="name"
+                  value={contact.name}
+                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
+                  slotProps={{
+                    input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <img src={stethoscope} alt="stethoscope" />
+                          <Typography
+                            sx={{
+                              fontSize: 14,
+                              fontWeight: 400,
+                              fontStyle: "normal",
+                              color: "#444",
+                            }}
+                            paddingLeft={2}
+                          >
+                            Dr.{" "}
+                          </Typography>
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
+                  error={!!errors.name}
+                  helperText={errors.name}
+                />
+                <TextField
+                  id="outlined-basic"
+                  variant="outlined"
+                  color="error"
+                  placeholder="specialty"
+                  onChange={handleChange}
+                  label={labelEnable.profession ? "Specialty" : ""}
+                  onFocus={() => handleOnFocus("profession")}
+                  name="profession"
+                  value={contact.profession}
+                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
+                  slotProps={{
+                    input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <img src={speciality} alt="speciality" />
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
+                  error={!!errors.profession}
+                  helperText={errors.profession}
+                />
+                <TextField
+                  id="outlined-basic"
+                  label={labelEnable.phone ? "Phone number" : ""}
+                  onFocus={() => handleOnFocus("phone")}
+                  variant="outlined"
+                  color="error"
+                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
+                  name="phone"
+                  placeholder="Phone number"
+                  value={contact.phone}
+                  onChange={handleChange}
+                  slotProps={{
+                    input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <img src={phone} alt="location" />
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
+                  error={!!errors.phone}
+                  helperText={errors.phone}
+                />
+                <TextField
+                  id="outlined-basic"
+                  label={labelEnable.email ? "E-mail" : ""}
+                  onFocus={() => handleOnFocus("email")}
+                  variant="outlined"
+                  color="error"
+                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
+                  name="email"
+                  placeholder="E-mail"
+                  value={contact.email}
+                  onChange={handleChange}
+                  slotProps={{
+                    input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <img src={email} alt="location" />
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
+                  error={!!errors.email}
+                  helperText={errors.email}
+                />
 
-              <TextField
-                id="outlined-basic"
-                label={labelEnable.address ? "Address" : ""}
-                onFocus={() => handleOnFocus("address")}
-                variant="outlined"
-                color="error"
-                sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
-                name="address"
-                placeholder="address"
-                value={contact.address}
-                onChange={handleChange}
-                slotProps={{
-                  input: {
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <img src={location} alt="location" />
-                      </InputAdornment>
-                    ),
-                  },
-                }}
-                error={!!errors.address}
-                helperText={errors.address}
-              />
+                <TextField
+                  id="outlined-basic"
+                  label={labelEnable.address ? "Address" : ""}
+                  onFocus={() => handleOnFocus("address")}
+                  variant="outlined"
+                  color="error"
+                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
+                  name="address"
+                  placeholder="address"
+                  value={contact.address}
+                  onChange={handleChange}
+                  slotProps={{
+                    input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <img src={location} alt="location" />
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
+                  error={!!errors.address}
+                  helperText={errors.address}
+                />
 
-              <TextField
-                id="outlined-basic"
-                label={labelEnable.notes ? "Notes" : ""}
-                onFocus={() => handleOnFocus("notes")}
-                variant="outlined"
-                color="error"
-                sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
-                name="notes"
-                placeholder="notes"
-                value={contact.notes}
-                onChange={handleChange}
-                slotProps={{
-                  input: {
-                    startAdornment: (
-                      <InputAdornment position="start">
-                        <img src={note} alt="notes" />
-                      </InputAdornment>
-                    ),
-                  },
-                }}
-                error={!!errors.notes}
-                helperText={errors.notes}
-              />
+                <TextField
+                  id="outlined-basic"
+                  label={labelEnable.notes ? "Notes" : ""}
+                  onFocus={() => handleOnFocus("notes")}
+                  variant="outlined"
+                  color="error"
+                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
+                  name="notes"
+                  placeholder="notes"
+                  value={contact.notes}
+                  onChange={handleChange}
+                  slotProps={{
+                    input: {
+                      startAdornment: (
+                        <InputAdornment position="start">
+                          <img src={note} alt="notes" />
+                        </InputAdornment>
+                      ),
+                    },
+                  }}
+                  error={!!errors.notes}
+                  helperText={errors.notes}
+                />
+              </div>
             </div>
             <div className="saveContainer">
               <Button
