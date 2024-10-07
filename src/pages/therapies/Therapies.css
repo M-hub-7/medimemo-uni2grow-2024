@@ -1,0 +1,54 @@
+.therapies-container {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.title {
+  color: var(--Primary-text, #444);
+  text-align: center;
+  font-family: "Open Sans";
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+.therapies {
+  display: flex;
+  padding: 18px 10px 18px 16px;
+  align-items: center;
+  gap: 20px;
+  align-self: stretch;
+  border-radius: var(--Radius-xs, 4px);
+  background: var(--Background-card, #f4f4f4);
+}
+
+.therapyName {
+  color: var(--Primary-text, #444);
+  font-family: "Open Sans";
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 140%;
+}
+
+.typography1 {
+  color: var(--Primary-text, #444);
+  font-family: "Open Sans";
+
+  line-height: 140%;
+}
+
+.addicon {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+}
+
+.addContainer {
+  display: flex;
+  margin-top: 25px;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+  flex-shrink: 0;
+}

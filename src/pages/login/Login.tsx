@@ -73,7 +73,7 @@ function Login() {
         );
         if (isValidUser) {
           setCredentials({ username: "", password: "" });
-          navigate("/dashboard");
+          navigate("/medications");
         } else {
           setSnackbarMessage("Email or password incorrect");
           setOpenSnackbar(true);
@@ -92,7 +92,7 @@ function Login() {
 
   return (
     <>
-      <div className="container">
+      <div className="login-container">
         <div className="img">
           <img alt="title" src={oh} />
         </div>
@@ -115,7 +115,7 @@ function Login() {
                   variant="outlined"
                   color="error"
                   value={credentials.username}
-                  sx={{ width: "80%" }}
+                  sx={{ flex: 1 }}
                   onChange={handleChange}
                   name="username"
                   error={!!errors.username}
@@ -131,7 +131,7 @@ function Login() {
                   variant="outlined"
                   color="error"
                   value={credentials.password}
-                  sx={{ width: "80%" }}
+                  sx={{ flex: 1 }}
                   onChange={handleChange}
                   name="password"
                   error={!!errors.password}
@@ -140,7 +140,9 @@ function Login() {
               </div>
             </div>
             <div className="divforgot">
-              <Link sx={{ color: "black", cursor: "pointer" }}>Forgot Password</Link>
+              <Link sx={{ color: "black", cursor: "pointer" }}>
+                Forgot Password
+              </Link>
             </div>
             <div className="divbutton">
               <Button
@@ -149,7 +151,7 @@ function Login() {
                   backgroundColor: "red",
                   color: "white",
                   fontWeight: "bold",
-                  width: "80%",
+                  flex: 1
                 }}
                 type="submit"
               >
@@ -166,13 +168,9 @@ function Login() {
               </span>
             </div>
             <div className="divor">
-              <span>
-                <hr />
-              </span>
-              <span>or</span>
-              <span>
-                <hr />
-              </span>
+              <div className="divider"></div>
+              or
+              <div className="divider"></div>
             </div>
 
             <div className="divimage">
@@ -183,7 +181,7 @@ function Login() {
                   justifyContent: "center",
                   alignItems: "center",
                   display: "flex",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
               >
                 <img width={30} height={30} alt="apple" src={a} />
@@ -196,7 +194,7 @@ function Login() {
                   justifyContent: "center",
                   alignItems: "center",
                   display: "flex",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
               >
                 <img width={30} height={30} alt="google" src={g} />
@@ -208,7 +206,7 @@ function Login() {
                   justifyContent: "center",
                   alignItems: "center",
                   display: "flex",
-                  cursor: "pointer"
+                  cursor: "pointer",
                 }}
               >
                 <img width={30} height={30} alt="facebook" src={f} />

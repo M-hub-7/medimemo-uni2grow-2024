@@ -4,7 +4,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  
+
 }
 
 
@@ -13,15 +13,21 @@ body {
   display: flex;
   justify-content: space-between;
   flex-direction: row;
-  width: 378px;
+  width: 100%;
   height: 80px;
-  padding: var(--Radius-sm, 8px) 16px;
   align-items: center;
-  gap: 10px;
-  flex-shrink: 0;
   background: var(--Background-dark, #444);
   position: absolute;
   bottom: 0;
+}
+
+.sub-menuBot {
+  display: flex;
+  justify-content: space-around;
+  flex-direction: row;
+  flex: 1;
+  height: 100%;
+  align-items: center;
 }
 
 .menuBotIconName {
@@ -31,9 +37,10 @@ body {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 140%; 
+  line-height: 140%;
   align-self: stretch;
 }
+
 .menuBotIconName-over {
   color: var(--Colours-White, #fff);
   text-align: center;
@@ -41,11 +48,11 @@ body {
   font-size: 12px;
   font-style: normal;
   font-weight: 400;
-  line-height: 140%; 
+  line-height: 140%;
 }
+
 .menuBottomItem {
   display: flex;
-  padding: var(--Radius-xs, 4px) 0px;
   flex-direction: column;
   align-items: center;
   gap: var(--Radius-xs, 4px);
@@ -55,7 +62,6 @@ body {
 
 .iconClick {
   display: flex;
-  padding: var(--Radius-xs, 4px) 20px;
   align-items: center;
   gap: 10px;
   border-radius: 16px;
@@ -63,9 +69,10 @@ body {
 
 .iconClickMiddle {
   display: flex;
-  padding: var(--Radius-xs, 4px) 20px;
   align-items: center;
   gap: 10px;
-  border-radius: 16px;
+  border-radius: 25px;
   background-color: white;
+  width: 100%;
+  justify-content: center;
 }

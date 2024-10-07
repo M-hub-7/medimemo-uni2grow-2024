@@ -1,0 +1,61 @@
+.background {
+    width: 400px;
+    background-color: #F8F4F4;
+}
+
+.medications-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: auto;
+    overflow-y: auto;
+}
+
+.head-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.title {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.seond-container {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: auto;
+}
+
+.empty-doses {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+
+    border: 2px dashed #555;
+}
+
+.all-list {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    max-height: 325px;
+    overflow-y: auto;
+}
+
+.sub-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}

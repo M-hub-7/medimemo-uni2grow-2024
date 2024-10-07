@@ -7,6 +7,7 @@ import add from "../../assets/images/contact/add_circle.svg";
 import arrowBack from "../../assets/images/contact/arrow_forward_ios.svg";
 import stethoscope from "../../assets/images/contact/stethoscope.svg";
 import { IContact } from "../../models/Contact";
+import Header from "../../components/header/Header";
 import { useLocation, useNavigate } from "react-router-dom";
 
 function Contacts() {
@@ -53,32 +54,32 @@ function Contacts() {
 
   return (
     <>
-      <Typography className="typography">Contacts</Typography>
-      <div className="searchContainer">
-        <Paper
-          component="div"
-          sx={{
-            p: "2px 4px",
-            display: "flex",
-            alignItems: "center",
-            width: "90%",
-            borderRadius: 20,
-            backgroundColor: "#FFEFEF",
-            maxHeight: 300,
-            overflowY: "auto",
-          }}
-        >
-          <InputBase
-            sx={{ ml: 1, flex: 1 }}
-            placeholder="Search doctor"
-            inputProps={{ "aria-label": "search doctor" }}
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-          />
-          <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
-            <img src={search} alt="search icon" />
-          </IconButton>
-        </Paper>
+      <Header title="Contacts" />
+      <div className="contacts-container">
+        <div className="searchContainer">
+          <Paper
+            component="div"
+            sx={{
+              p: "2px 4px",
+              display: "flex",
+              alignItems: "center",
+              width: "90%",
+              borderRadius: 20,
+              backgroundColor: "#FFEFEF",
+              maxHeight: 300,
+            }}
+          >
+            <InputBase
+              sx={{ ml: 1, flex: 1 }}
+              placeholder="Search doctor"
+              inputProps={{ "aria-label": "search doctor" }}
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+            />
+            <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+              <img src={search} alt="search icon" />
+            </IconButton>
+          </Paper>
 
         <div className="listContact">
           {!isNull(error) ? (

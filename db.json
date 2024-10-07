@@ -1,7 +1,7 @@
 {
   "users": [
     {
-      "id": 1,
+      "id": "1",
       "name": "admin",
       "username": "admin",
       "password": "admin",
@@ -13,7 +13,7 @@
       "address": ""
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "guest",
       "username": "guest",
       "password": "guest",
@@ -71,7 +71,7 @@
   ],
   "contacts": [
     {
-      "id": 1,
+      "id": "1",
       "name": "Sarah Davis",
       "qualification": "Dr",
       "phone": "+237 656585542",
@@ -81,7 +81,7 @@
       "notes": ""
     },
     {
-      "id": 2,
+      "id": "2",
       "name": "Laura Thompson",
       "qualification": "Dr",
       "phone": "+237 674772917",
@@ -91,7 +91,7 @@
       "notes": ""
     },
     {
-      "id": 3,
+      "id": "3",
       "name": "John Smith",
       "qualification": "Dr",
       "phone": "+237 677345741",
@@ -101,7 +101,7 @@
       "notes": ""
     },
     {
-      "id": 4,
+      "id": "4",
       "name": "John Smith",
       "qualification": "Dr",
       "phone": "+237 677345741",
@@ -111,7 +111,7 @@
       "notes": ""
     },
     {
-      "id": 5,
+      "id": "5",
       "name": "John Smith",
       "qualification": "Dr",
       "phone": "+237 677345741",
@@ -123,7 +123,7 @@
   ],
   "prescriptions": [
     {
-      "id": 1,
+      "id": "1",
       "therapy": 1,
       "medicine": 2,
       "dateFrom": "2024-09-19",
@@ -132,31 +132,40 @@
   ],
   "prescriptiontimes": [
     {
-      "id": 5,
+      "id": "5",
       "time": "12h30PM"
     }
   ],
   "medicines": [
     {
-      "id": 5,
+      "id": "5",
       "name": "Paracetamol",
       "leaflet": ""
     },
     {
-      "id": 6,
+      "id": "6",
       "name": "Metronidazol",
       "leaflet": ""
     },
     {
-      "id": 1,
+      "id": "1",
       "name": "Arthrose",
       "leaflet": ""
     }
   ],
   "doses": [
     {
-      "id": 1,
+      "id": "1",
       "therapyName": "Therapy 1",
+      "time": "12h30PM",
+      "date": "2024-09-20",
+      "taken": false,
+      "therapy": 1,
+      "prescriptionTime": 1
+    },
+    {
+      "id": "2",
+      "therapyName": "Therapy 2",
       "time": "12h30PM",
       "date": "2024-09-20",
       "taken": true,

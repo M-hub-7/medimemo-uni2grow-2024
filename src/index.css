@@ -1,6 +1,16 @@
 #root {
-  margin: auto;
-  padding: 80;
-  width: 400px;
-  
+  margin: 0px;
+  padding: 0px;
+  height: 100vh;
+  position: relative;
+  overflow: hidden;
+  flex: 1;
+  display: flex;
+}
+
+body {
+  height: 100vh;
+  margin: 0px;
+  overflow: hidden;
+  min-width: fit-content;
 }
