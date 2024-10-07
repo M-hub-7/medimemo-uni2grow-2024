@@ -47,6 +47,9 @@ function Contacts() {
   function isNull(error: string): boolean {
     return error === "";
   }
+  const handleNavigation = (id: string) => {
+    navigate(`/viewcontact`);
+  };
 
   return (
     <>
@@ -125,6 +128,7 @@ function Contacts() {
                   type="button"
                   sx={{ p: "10px" }}
                   aria-label="arrowBack"
+                  onClick={handleNavigation}
                 >
                   <img src={arrowBack} alt="arrowBack icon" />
                 </IconButton>
