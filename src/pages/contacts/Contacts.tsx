@@ -81,75 +81,76 @@ function Contacts() {
             </IconButton>
           </Paper>
 
-        <div className="listContact">
-          {!isNull(error) ? (
-            <Typography sx={{ color: "red" }}>{error}</Typography>
-          ) : emptyContacts(contacts) ? (
-            <Typography>No contact available</Typography>
-          ) : (
-            filteredContacts.map((contact: IContact) => (
-              <Paper
-                key={contact.id}
-                component="form"
-                sx={{
-                  p: "2px 4px",
-                  display: "flex",
-                  width: "90%",
-                  justifyContent: "space-between",
-                  backgroundColor: "#F4F4F4",
-                  paddingTop: 1.5,
-                  paddingBottom: 1.5,
-                }}
-              >
-                <IconButton
-                  type="button"
-                  sx={{ p: "10px" }}
-                  aria-label="stethoscope"
+          <div className="listContact">
+            {!isNull(error) ? (
+              <Typography sx={{ color: "red" }}>{error}</Typography>
+            ) : emptyContacts(contacts) ? (
+              <Typography>No contact available</Typography>
+            ) : (
+              filteredContacts.map((contact: IContact) => (
+                <Paper
+                  key={contact.id}
+                  component="form"
+                  sx={{
+                    p: "2px 4px",
+                    display: "flex",
+                    width: "90%",
+                    justifyContent: "space-between",
+                    backgroundColor: "#F4F4F4",
+                    paddingTop: 1.5,
+                    paddingBottom: 1.5,
+                  }}
                 >
-                  <img src={stethoscope} alt="stethoscope icon" />
-                </IconButton>
-
-                <div className="contactName">
-                  <Typography
-                    sx={{ fontSize: 17, fontWeight: 700 }}
-                    className="typography1"
+                  <IconButton
+                    type="button"
+                    sx={{ p: "10px" }}
+                    aria-label="stethoscope"
                   >
-                    {contact.qualification}. {contact.name}
-                  </Typography>
+                    <img src={stethoscope} alt="stethoscope icon" />
+                  </IconButton>
 
-                  <Typography
-                    sx={{ fontSize: 10, fontWeight: 400 }}
-                    className="typography2"
+                  <div className="contactName">
+                    <Typography
+                      sx={{ fontSize: 17, fontWeight: 700 }}
+                      className="typography1"
+                    >
+                      {contact.qualification}. {contact.name}
+                    </Typography>
+
+                    <Typography
+                      sx={{ fontSize: 10, fontWeight: 400 }}
+                      className="typography2"
+                    >
+                      {contact.profession}
+                    </Typography>
+                  </div>
+
+                  <IconButton
+                    type="button"
+                    sx={{ p: "10px" }}
+                    aria-label="arrowBack"
+                    // onClick={handleNavigation}
                   >
-                    {contact.profession}
-                  </Typography>
-                </div>
-
-                <IconButton
-                  type="button"
-                  sx={{ p: "10px" }}
-                  aria-label="arrowBack"
-                  onClick={handleNavigation}
-                >
-                  <img src={arrowBack} alt="arrowBack icon" />
-                </IconButton>
-              </Paper>
-            ))
-          )}
+                    <img src={arrowBack} alt="arrowBack icon" />
+                  </IconButton>
+                </Paper>
+              ))
+            )}
+          </div>
         </div>
-      </div>
 
-      <div className="addContainer">
-        <IconButton
-          type="button"
-          sx={{ p: "10px" }}
-          aria-label="arrowBack"
-          onClick={() => {
-            navigate("/addEditContact");
-          }}
-        >
-          <img src={add} alt="add icon" />
-        </IconButton>
+        <div className="addContainer">
+          <IconButton
+            type="button"
+            sx={{ p: "10px" }}
+            aria-label="arrowBack"
+            onClick={() => {
+              navigate("/addEditContact");
+            }}
+          >
+            <img src={add} alt="add icon" />
+          </IconButton>
+        </div>
       </div>
     </>
   );
