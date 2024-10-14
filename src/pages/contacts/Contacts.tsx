@@ -22,8 +22,13 @@ function Contacts() {
       const result = await fetch("http://localhost:3000/contacts");
       const datas: IContact[] = await result.json();
 
-      if (location.state?.newContact) {
-        setContacts([location.state.newContact, ...datas]);
+      if (location.state && location.state?.newContact) {
+        const newStateContact: IContact = location.state?.newContact;
+        const updateDate = datas.filter(
+          (contact) => contact.id !== newStateContact.id
+        );
+        updateDate.unshift(newStateContact);
+        setContacts(updateDate);
       } else {
         setContacts(datas);
       }
@@ -49,7 +54,7 @@ function Contacts() {
     return error === "";
   }
   const handleNavigation = (id: string) => {
-    navigate(`/viewcontact`);
+    navigate(`/viewcontact/${id}`);
   };
 
   return (
@@ -129,7 +134,9 @@ function Contacts() {
                     type="button"
                     sx={{ p: "10px" }}
                     aria-label="arrowBack"
-                    // onClick={handleNavigation}
+                    onClick={() => {
+                      handleNavigation(contact.id!);
+                    }}
                   >
                     <img src={arrowBack} alt="arrowBack icon" />
                   </IconButton>

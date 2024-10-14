@@ -43,7 +43,11 @@ const router = createBrowserRouter([
         element: <AddEditContact />,
       },
       {
-        path: "/viewcontact",
+        path: "/addEditContact/:id",
+        element: <AddEditContact />,
+      },
+      {
+        path: "/viewcontact/:id",
         element: <ViewContact />,
       },
       {

@@ -23,15 +23,8 @@
   line-height: 140%;
 }
 .formContainer {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  gap: 10px;
-  align-self: stretch;
-
-  border-radius: var(--Radius-sm, 8px);
-  background: #f8f4f4;
+  flex: 1;
+  overflow-y: auto;
 }
 
 .textfieldContenair {
@@ -49,11 +42,10 @@
   display: flex;
   flex-direction: column;
   justify-content: flex-end;
-  align-items: flex-start;
-  margin-top: 70px;
+  gap: 5px;
+  margin-top: 20px;
   align-self: stretch;
   background-color: #f8f4f4;
-  width: 390px;
 }
 
 .saveButton {

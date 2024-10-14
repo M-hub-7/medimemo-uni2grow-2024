@@ -5,6 +5,7 @@ import {
   TextField,
   Typography,
 } from "@mui/material";
+import { Formik, FormikErrors } from "formik";
 import ArrowBackIcon from "@mui/icons-material/ArrowBack";
 import "./AddEditContact.css";
 import stethoscope from "../../../assets/images/contact/stethoscope.svg";
@@ -14,34 +15,27 @@ import email from "../../../assets/images/contact/message.jpeg";
 import location from "../../../assets/images/contact/location.jpeg";
 import note from "../../../assets/images/contact/notes.jpeg";
 import save from "../../../assets/images/contact/save.svg";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   formError,
   formValues,
-  validateContactForm,
   validationContactField,
 } from "../../../utils/validationAddEditContact";
 import { IContact } from "../../../models/Contact";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate, useParams } from "react-router-dom";
+import Header from "../../../components/header/Header";
+import { useFormik } from "formik";
+import * as Yup from "yup";
 
 export function AddEditContact() {
-  const [contact, setContact] = useState<formValues>({
-    name: "",
-    notes: "",
-    profession: "",
-    phone: "",
-    email: "",
-    address: "",
+  const validationSchema = Yup.object({
+    name: Yup.string().required("Vous devez remplir le champ nom"),
+    profession: Yup.string().required("Vous devez remplir le champ speciality"),
+    email: Yup.string().email("Email non valide"),
+    phone: Yup.string()
+      .matches(/^[0-9]+$/, "Doit être un numéro valide")
+      .required("Vous devez remplir le champ numéro"),
   });
-  const [errors, setErrors] = useState<formError>({
-    name: "",
-    notes: "",
-    profession: "",
-    phone: "",
-    email: "",
-    address: "",
-  });
-
   const [labelEnable, setEnable] = useState({
     name: false,
     notes: false,
@@ -51,117 +45,105 @@ export function AddEditContact() {
     address: false,
     note: false,
   });
-
-  const navigate = useNavigate();
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const fieldName = e.target.name;
-    const value = e.target.value;
-    const error = validationContactField(fieldName, value);
-
-    setErrors((prevState) => ({
-      ...prevState,
-      [fieldName]: error || "",
-    }));
-
-    setContact({
-      ...contact,
-      [fieldName]: value,
-    });
-  };
   function handleOnFocus(field: keyof IContact) {
     setEnable((prevState) => ({
       ...prevState,
       [field]: true,
     }));
   }
+  const navigate = useNavigate();
+  const locationID = useLocation();
 
-  const handleSubmit = async (
-    e: React.FormEvent<HTMLFormElement>
-  ): Promise<void> => {
-    e.preventDefault();
+  const { id } = locationID.state || "";
+  const isEditing = !!id;
 
-    // Validate the entire form before proceeding
-    const validationErrors = validateContactForm(contact);
+  const formik = useFormik({
+    initialValues: {
+      name: "",
+      profession: "",
+      phone: "",
+      email: "",
+      address: "",
+      notes: "",
+    },
+    validationSchema: validationSchema,
+    onSubmit: async (values) => {
+      try {
+        const newContact = {
+          name: values.name,
+          notes: values.notes,
+          qualification: "Dr",
+          profession: values.profession,
+          phone: values.phone,
+          email: values.email,
+          address: values.address,
+        };
 
-    // If there are validation errors, update the errors state and stop submission
-    if (Object.keys(validationErrors).length > 0) {
-      setErrors(validationErrors); // Set the validation errors to the state
-      return; // Stop submission if validation fails
-    }
+        let response;
+        if (isEditing) {
+          response = await fetch(`http://localhost:3000/contacts/${id}`, {
+            method: "PUT",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newContact),
+          });
+        } else {
+          response = await fetch("http://localhost:3000/contacts", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(newContact),
+          });
+        }
 
-    try {
-      const newContact: IContact = {
-        name: contact.name,
-        notes: contact.notes,
-        qualification: "Dr",
-        profession: contact.profession,
-        phone: contact.phone,
-        email: contact.email,
-        address: contact.address,
-      };
-
-      // If validation passes, make the API call to submit the data
-      const response = await fetch("http://localhost:3000/contacts", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newContact),
-      });
-      console.log(newContact);
-
-      if (response.ok) {
-        setContact({
-          name: "",
-          notes: "",
-          profession: "",
-          phone: "",
-          email: "",
-          address: "",
-        });
-        const savedContact = await response.json(); // Get the saved contact with the ID
-        navigate("/contacts", { state: { newContact: savedContact } }); // Pass the new contact
-      } else {
-        alert("Error adding contact.");
+        if (response.ok) {
+          formik.resetForm();
+          const savedContact = await response.json();
+          navigate("/contacts", { state: { newContact: savedContact } });
+        } else {
+          alert("Erreur lors de l'ajout du contact.");
+        }
+      } catch (error) {
+        console.error("Erreur:", error);
       }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  };
+    },
+  });
 
   return (
     <>
-      <div className="contenair">
-        <div className="headerContainer">
-          <Button
-            type="button"
-            sx={{ p: "10px" }}
-            aria-label="arrowBack"
-            onClick={() => {
-              navigate("/contacts");
-            }}
-          >
-            <ArrowBackIcon />
-          </Button>
-          <Typography className="textTypography" paddingLeft={15}>
-            New doctor
-          </Typography>
-        </div>
-        <div className="formContainer">
-          <form onSubmit={handleSubmit} className="formcolor">
-            <div className="infofield">
-              <div className="textfieldContenair">
+      <Header
+        title={"New Doctor"}
+        showBackButton={true}
+        onBackButtonClick={() => {
+          navigate("/contacts");
+        }}
+      />
+
+      <div className="formContainer">
+        <div className="infofield">
+          <div className="textfieldContenair">
+            <form onSubmit={formik.handleSubmit}>
+              <div>
                 <TextField
                   id="outlined-basic"
-                  onChange={handleChange}
-                  label={labelEnable.name ? "Name" : ""}
-                  onFocus={() => handleOnFocus("name")}
                   variant="outlined"
                   placeholder="name"
                   color="error"
                   name="name"
-                  value={contact.name}
-                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
+                  label={labelEnable.name ? "Name" : ""}
+                  onFocus={() => handleOnFocus("name")}
+                  value={formik.values.name}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.name && Boolean(formik.errors.name)}
+                  helperText={formik.touched.name && formik.errors.name}
+                  sx={{
+                    width: "100%",
+                    color: "Primary",
+                    marginBottom: 2,
+                  }}
                   slotProps={{
                     input: {
                       startAdornment: (
@@ -182,20 +164,31 @@ export function AddEditContact() {
                       ),
                     },
                   }}
-                  error={!!errors.name}
-                  helperText={errors.name}
                 />
+
                 <TextField
                   id="outlined-basic"
                   variant="outlined"
+                  name="profession"
                   color="error"
                   placeholder="specialty"
-                  onChange={handleChange}
                   label={labelEnable.profession ? "Specialty" : ""}
                   onFocus={() => handleOnFocus("profession")}
-                  name="profession"
-                  value={contact.profession}
-                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
+                  value={formik.values.profession}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={
+                    formik.touched.profession &&
+                    Boolean(formik.errors.profession)
+                  }
+                  helperText={
+                    formik.touched.profession && formik.errors.profession
+                  }
+                  sx={{
+                    width: "100%",
+                    color: "Primary",
+                    marginBottom: 2,
+                  }}
                   slotProps={{
                     input: {
                       startAdornment: (
@@ -205,20 +198,26 @@ export function AddEditContact() {
                       ),
                     },
                   }}
-                  error={!!errors.profession}
-                  helperText={errors.profession}
                 />
+
                 <TextField
                   id="outlined-basic"
-                  label={labelEnable.phone ? "Phone number" : ""}
-                  onFocus={() => handleOnFocus("phone")}
                   variant="outlined"
                   color="error"
-                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
                   name="phone"
                   placeholder="Phone number"
-                  value={contact.phone}
-                  onChange={handleChange}
+                  label={labelEnable.phone ? "Phone number" : ""}
+                  onFocus={() => handleOnFocus("phone")}
+                  value={formik.values.phone}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.phone && Boolean(formik.errors.phone)}
+                  helperText={formik.touched.phone && formik.errors.phone}
+                  sx={{
+                    width: "100%",
+                    color: "Primary",
+                    marginBottom: 2,
+                  }}
                   slotProps={{
                     input: {
                       startAdornment: (
@@ -228,20 +227,26 @@ export function AddEditContact() {
                       ),
                     },
                   }}
-                  error={!!errors.phone}
-                  helperText={errors.phone}
                 />
+
                 <TextField
                   id="outlined-basic"
-                  label={labelEnable.email ? "E-mail" : ""}
-                  onFocus={() => handleOnFocus("email")}
                   variant="outlined"
                   color="error"
-                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
                   name="email"
                   placeholder="E-mail"
-                  value={contact.email}
-                  onChange={handleChange}
+                  label={labelEnable.email ? "E-mail" : ""}
+                  onFocus={() => handleOnFocus("email")}
+                  value={formik.values.email}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.email && Boolean(formik.errors.email)}
+                  helperText={formik.touched.email && formik.errors.email}
+                  sx={{
+                    width: "100%",
+                    color: "Primary",
+                    marginBottom: 2,
+                  }}
                   slotProps={{
                     input: {
                       startAdornment: (
@@ -251,21 +256,24 @@ export function AddEditContact() {
                       ),
                     },
                   }}
-                  error={!!errors.email}
-                  helperText={errors.email}
                 />
 
                 <TextField
                   id="outlined-basic"
-                  label={labelEnable.address ? "Address" : ""}
-                  onFocus={() => handleOnFocus("address")}
                   variant="outlined"
                   color="error"
-                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
                   name="address"
                   placeholder="address"
-                  value={contact.address}
-                  onChange={handleChange}
+                  value={formik.values.address}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  label={labelEnable.address ? "Address" : ""}
+                  onFocus={() => handleOnFocus("address")}
+                  sx={{
+                    width: "100%",
+                    color: "Primary",
+                    marginBottom: 2,
+                  }}
                   slotProps={{
                     input: {
                       startAdornment: (
@@ -275,23 +283,31 @@ export function AddEditContact() {
                       ),
                     },
                   }}
-                  error={!!errors.address}
-                  helperText={errors.address}
                 />
 
                 <TextField
                   id="outlined-basic"
-                  label={labelEnable.notes ? "Notes" : ""}
-                  onFocus={() => handleOnFocus("notes")}
                   variant="outlined"
                   color="error"
-                  sx={{ width: "100%", color: "Primary", marginBottom: 2 }}
                   name="notes"
                   placeholder="notes"
-                  value={contact.notes}
-                  onChange={handleChange}
+                  value={formik.values.notes}
+                  onChange={formik.handleChange}
+                  onBlur={formik.handleBlur}
+                  error={formik.touched.notes && Boolean(formik.errors.notes)}
+                  helperText={formik.touched.notes && formik.errors.notes}
+                  label={labelEnable.notes ? "Notes" : ""}
+                  onFocus={() => handleOnFocus("notes")}
+                  sx={{
+                    width: "100%",
+                    color: "Primary",
+                    marginBottom: 2,
+                  }}
+                  multiline
+                  maxRows={4}
                   slotProps={{
                     input: {
+                      sx: { display: "flex", alignItems: "start" },
                       startAdornment: (
                         <InputAdornment position="start">
                           <img src={note} alt="notes" />
@@ -299,22 +315,25 @@ export function AddEditContact() {
                       ),
                     },
                   }}
-                  error={!!errors.notes}
-                  helperText={errors.notes}
                 />
+
+                <div className="saveContainer">
+                  <Button
+                    className="saveButton"
+                    type="submit"
+                    sx={{
+                      backgroundColor: "#F00",
+                      borderRadius: 4,
+                      padding: 1,
+                    }}
+                  >
+                    <img alt="save-icon" src={save} />
+                    <Typography className="saveText">Save</Typography>
+                  </Button>
+                </div>
               </div>
-            </div>
-            <div className="saveContainer">
-              <Button
-                className="saveButton"
-                type="submit"
-                sx={{ backgroundColor: "#F00", borderRadius: 4, padding: 1 }}
-              >
-                <img alt="save-icon" src={save} />
-                <Typography className="saveText">Save</Typography>
-              </Button>
-            </div>
-          </form>
+            </form>
+          </div>
         </div>
       </div>
     </>
