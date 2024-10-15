@@ -1,12 +1,4 @@
-import {
-  Button,
-  IconButton,
-  InputAdornment,
-  TextField,
-  Typography,
-} from "@mui/material";
-import { Formik, FormikErrors } from "formik";
-import ArrowBackIcon from "@mui/icons-material/ArrowBack";
+import { Button, InputAdornment, TextField, Typography } from "@mui/material";
 import "./AddEditContact.css";
 import stethoscope from "../../../assets/images/contact/stethoscope.svg";
 import speciality from "../../../assets/images/contact/speciality.jpeg";
@@ -16,11 +8,6 @@ import location from "../../../assets/images/contact/location.jpeg";
 import note from "../../../assets/images/contact/notes.jpeg";
 import save from "../../../assets/images/contact/save.svg";
 import { useEffect, useState } from "react";
-import {
-  formError,
-  formValues,
-  validationContactField,
-} from "../../../utils/validationAddEditContact";
 import { IContact } from "../../../models/Contact";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import Header from "../../../components/header/Header";
@@ -53,9 +40,31 @@ export function AddEditContact() {
   }
   const navigate = useNavigate();
   const locationID = useLocation();
-
   const { id } = locationID.state || "";
   const isEditing = !!id;
+
+  useEffect(() => {
+    if (isEditing) {
+      const fetchContactById = async (contactId: string) => {
+        try {
+          const response = await fetch(`
+            http://localhost:3000/contacts/${contactId}`);
+          const data: IContact = await response.json();
+          formik.setValues({
+            name: data.name || "",
+            notes: data.notes || "",
+            profession: data.profession || "",
+            phone: data.phone || "",
+            email: data.email || "",
+            address: data.address || "",
+          });
+        } catch (error) {
+          console.error("Failed to fetch contact", error);
+        }
+      };
+      fetchContactById(id!);
+    }
+  }, [id, isEditing]);
 
   const formik = useFormik({
     initialValues: {
@@ -110,11 +119,17 @@ export function AddEditContact() {
       }
     },
   });
+  let title;
+  if (isEditing) {
+    title = "Edit doctor";
+  } else {
+    title = "New doctor";
+  }
 
   return (
     <>
       <Header
-        title={"New Doctor"}
+        title={title}
         showBackButton={true}
         onBackButtonClick={() => {
           navigate("/contacts");

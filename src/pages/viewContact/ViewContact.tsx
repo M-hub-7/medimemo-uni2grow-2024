@@ -55,7 +55,8 @@ export function ViewContact() {
   const handleBackButton = () => {
     navigate("/contacts");
   };
-  const editroute: string = `/addeditcontact/${id}`;
+  const editroute: string = `/addeditcontact`;
+
   const deleteRoute: string = `http://localhost:3000/contacts/${id}`;
 
   return (
@@ -65,7 +66,9 @@ export function ViewContact() {
         showBackButton={true}
         showRightButton={true}
         onBackButtonClick={handleBackButton}
-        RightButton={<EditViewBox edit={editroute} delete={deleteRoute} />}
+        RightButton={
+          <EditViewBox edit={editroute} delete={deleteRoute} id={id} />
+        }
       />
       <div className="divProf">
         <Typography

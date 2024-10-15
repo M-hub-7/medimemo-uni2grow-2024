@@ -1,4 +1,10 @@
-import { IconButton, InputBase, Paper, Typography } from "@mui/material";
+import {
+  Button,
+  IconButton,
+  InputBase,
+  Paper,
+  Typography,
+} from "@mui/material";
 import "./Contacts.css";
 
 import { useEffect, useState } from "react";
@@ -105,6 +111,9 @@ function Contacts() {
                     paddingTop: 1.5,
                     paddingBottom: 1.5,
                   }}
+                  onClick={() => {
+                    handleNavigation(contact.id!);
+                  }}
                 >
                   <IconButton
                     type="button"
@@ -134,9 +143,6 @@ function Contacts() {
                     type="button"
                     sx={{ p: "10px" }}
                     aria-label="arrowBack"
-                    onClick={() => {
-                      handleNavigation(contact.id!);
-                    }}
                   >
                     <img src={arrowBack} alt="arrowBack icon" />
                   </IconButton>

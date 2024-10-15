@@ -9,7 +9,6 @@ import { DeleteBox } from "../../components/deletebox/DeleteBox";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import ReportGmailerrorredIcon from "@mui/icons-material/ReportGmailerrorred";
 import "./editBox.css";
-import { Height } from "@mui/icons-material";
 
 export function EditViewBox(props: IEditBox): JSX.Element {
   const navigate = useNavigate();
@@ -25,7 +24,7 @@ export function EditViewBox(props: IEditBox): JSX.Element {
   };
   const handleEdit = () => {
     if (props.edit) {
-      navigate(props.edit); // Utilise la prop edit pour naviguer
+      navigate(`${props.edit}`, { state: { id: props.id } }); // Utilise la prop edit pour naviguer
     }
   };
 

@@ -71,16 +71,6 @@
   ],
   "contacts": [
     {
-      "id": "e89a",
-      "name": "Davis Guilene",
-      "notes": "jhjkhkjhkjhkjhjkh",
-      "qualification": "Dr",
-      "profession": "Pediatrician",
-      "phone": "+237 690250552",
-      "email": "davis@gmail.com",
-      "address": "Dschang, Cameroun"
-    },
-    {
       "id": "7941",
       "name": "Davis Guill",
       "notes": "jhjkhkjhkjhkjhjkh",
@@ -182,16 +172,6 @@
       "qualification": "Dr"
     },
     {
-      "id": "a8cb",
-      "qualification": "Dr",
-      "name": "hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh",
-      "profession": "ghgg",
-      "phone": "955555555",
-      "email": "mfendemnguidje@gmail.com",
-      "address": "Anglais",
-      "notes": "rrrrrrrrrrrrrrrrrrrrrrrrrrrrrrr"
-    },
-    {
       "id": "2ba5",
       "name": "bnbn",
       "notes": "gggg",
@@ -202,12 +182,12 @@
       "address": "hvhvhgvhg"
     },
     {
-      "id": "05e8",
-      "name": "vghhgghh",
-      "notes": "bmnbmn",
+      "id": "f34a",
+      "name": "vb",
+      "notes": "",
       "qualification": "Dr",
-      "profession": "jkkjkjj",
-      "phone": "99999",
+      "profession": "ccc",
+      "phone": "656585542",
       "email": "mfendemnguidje@gmail.com",
       "address": "Anglais"
     }

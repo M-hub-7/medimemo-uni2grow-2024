@@ -1,6 +1,7 @@
 .contacts-container {
   flex: 1;
   overflow-y: auto;
+  height: 90%;
 }
 
 .typography {
