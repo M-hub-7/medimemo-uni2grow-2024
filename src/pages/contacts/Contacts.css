@@ -1,9 +1,3 @@
-.contacts-container {
-  flex: 1;
-  overflow-y: auto;
-  height: 90%;
-}
-
 .typography {
   color: var(--Primary-text, #444);
   text-align: center;
@@ -22,7 +16,7 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 40px;
+  gap: 60px;
 
   border-radius: var(--Radius-sm, 8px);
   background: var(--Colours-White, #fff);
@@ -34,7 +28,8 @@
   align-items: center;
   gap: 15px;
   align-self: stretch;
-  height: 100%;
+  height: 250px;
+  overflow-y: auto;
 }
 
 .addContainer {
@@ -47,7 +42,7 @@
   border-radius: 25px;
   position: absolute;
   right: 0;
-  bottom: 0;
+  bottom: 25px;
   margin: 36px;
   cursor: pointer;
 }
